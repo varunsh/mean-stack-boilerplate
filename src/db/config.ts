@@ -1,13 +1,14 @@
 import mysql from 'mysql';
 
-const connection = mysql.createConnection({
+const connectionPool = mysql.createPool({
+	connectionLimit: 10,
 	host: 'localhost',
 	user: 'varun',
-	password: 'password',
+	password: 'P@ssword1',
 	database: 'test',
 	insecureAuth: true
 });
 
-connection.connect();
+connectionPool.on('error', ()=> console.log("Error: MySql error!"));
 
-export = connection;
+export = connectionPool;
