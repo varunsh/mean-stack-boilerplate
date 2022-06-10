@@ -1,11 +1,15 @@
 import express from 'express';
 import routes from './app.routes';
+import path from 'path';
 
 
 const app = express();
 
+// Middlewares
 app.use( express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
+// Routes
 app.get('/', (req, res) => {
 	res.sendfile('start.html');
 });
