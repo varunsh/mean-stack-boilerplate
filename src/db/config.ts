@@ -1,3 +1,5 @@
+const { Sequelize } = require('sequelize');
+
 import mysql from 'mysql';
 
 const connectionPool = mysql.createPool({
@@ -11,4 +13,19 @@ const connectionPool = mysql.createPool({
 
 connectionPool.on('error', ()=> console.log("Error: MySql error!"));
 
-export = connectionPool;
+const sequelize = new Sequelize('sqlze_test', 'varun', 'P@ssword1', {
+	host: 'localhost',
+	dialect: 'mysql'
+});
+
+
+try {
+	(async ()=>{
+  		await sequelize.authenticate();
+  		console.log('Connection has been established successfully.');
+	})()
+} catch (error) {
+  console.error('Unable to connect to the database:', error);
+}
+
+export { sequelize, connectionPool};

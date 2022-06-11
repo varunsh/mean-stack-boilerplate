@@ -3,6 +3,9 @@ import controller from '../app/users/users.component';
 
 const userRoutes = express.Router();
 userRoutes.get('/', controller.getUsers);
-userRoutes.get('/:id', controller.getUser)
+userRoutes.get('/:id', controller.getUser);
+userRoutes.post('/', controller.addNewUser);
+userRoutes.put('/', controller.updateUser);
+userRoutes.delete('/:id', controller.deleteUser);
 
-export = userRoutes;
+export default userRoutes;
